@@ -1,0 +1,72 @@
+<template>
+    <div v-if="list.length > 0" class="tags">
+        <div
+            v-for="item in list"
+            :key="`tag-${item.title}`"
+            :class="tagTypeStyles"
+        >
+            {{ item.title }}
+        </div>
+    </div>
+</template>
+
+<script setup>
+const props = defineProps({
+    list: {
+        type: Array,
+        default: () => [],
+    },
+    inline: {
+        type: Boolean,
+        default: false,
+    }
+});
+
+const tagTypeStyles = computed(() =>
+    props.inline ? "tags__item-inline" : "tags__item"
+);
+</script>
+
+<style lang="scss" scoped>
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tags__item {
+    border: solid 1px $green;
+    border-radius: 5px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 15px;
+    padding: 2px 15px;
+    color: $green;
+    position: relative;
+    cursor: default;
+    bottom: 0;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+
+    &:hover {
+        bottom: 2px;
+        transition: all 0.3s ease;
+    }
+}
+
+.tags__item-inline {
+    color: $green;
+    font-size: 16px;
+    line-height: 22px;
+    white-space: nowrap;
+    margin-right: 25px;
+    margin-bottom: 5px;
+}
+
+@media only screen and (max-width: $medium-devices) {
+    .tags__item-inline {
+        font-size: 14px;
+        line-height: 22px;
+        margin-right: 15px;
+    }
+}
+</style>

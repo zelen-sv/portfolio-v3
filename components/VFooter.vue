@@ -1,0 +1,99 @@
+<template>
+    <div class="footer">
+        <div class="footer__container">
+            <a href="mailto:st.zelenko@gmail.com" class="footer__email">
+                st.zelenko@gmail.com
+            </a>
+            <div class="footer__social">
+                <a href="https://github.com/zelen-sv" target="blank">
+                    <IconsGithub class="footer__social-icon" />
+                </a>
+                <a href="https://t.me/st_zelenko" target="blank">
+                    <IconsTelegram class="footer__social-icon" />
+                </a>
+                <a href="https://wa.me/375293079905" target="blank">
+                    <IconsWhatsapp class="footer__social-icon" />
+                </a>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style lang="scss" scoped>
+.footer {
+    background: $dark;
+}
+
+.footer__container {
+    margin: auto;
+    padding: 22px 0;
+    box-sizing: border-box;
+    max-width: $content-restriction;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__email {
+    font-size: 24px;
+    line-height: 120%;
+    color: $blue;
+    transition: all 0.3s ease;
+
+    &:hover {
+        color: $green;
+        transition: all 0.3s ease;
+    }
+}
+
+.footer__social {
+    display: flex;
+}
+
+.footer__social-icon {
+    margin-left: 40px;
+    position: relative;
+    bottom: 0;
+    transition: all 0.3s ease;
+    fill: $blue;
+    display: block;
+
+    &:hover {
+        bottom: 3px;
+        transition: all 0.3s ease;
+        fill: $green;
+    }
+}
+
+@media only screen and (max-width: $medium-devices) {
+    .footer {
+        border-radius: 5px;
+        margin: $mobile-side-space;
+        margin-bottom: 25px;
+    }
+
+    .footer__container {
+        padding: 40px 25px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer__email {
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 120%;
+        letter-spacing: -0.03em;
+        margin-bottom: 45px;
+    }
+
+    .footer__social {
+        display: grid;
+        grid-template-columns: 46px 46px 46px;
+        grid-column-gap: 40px;
+    }
+
+    .footer__social-icon {
+        margin-left: 0px;
+    }
+}
+</style>

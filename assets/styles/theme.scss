@@ -1,0 +1,31 @@
+// Colors
+
+$dark: #29217A;
+$blue: #8A9EFF;
+$dark-blue: #392B99;
+$dark-blue-75: rgba(57,43,153, 0.75);
+$green: #78FFF1;
+$white: #FFFFFF;
+$red: #ff6495;
+
+// Fonts
+$font-family-base: "Open Sans", sans-serif !default;
+
+// Devices
+$extra-small-devices: 350px;
+$small-devices: 576px;
+$medium-devices: 768px;
+$large-devices: 992px;
+$extra-devices: 1200px;
+$next-extra-devices: 1300px;
+
+// Other
+$content-restriction: 980px;
+$navbar-height: 95px;
+$mobile-navbar-height: 90px;
+
+// Z Indexes
+
+$loader-index: 20;
+$navbar-index: 10;
+$mobile-side-space: 20px;

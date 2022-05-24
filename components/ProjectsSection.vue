@@ -1,0 +1,188 @@
+<template>
+    <div id="projects" class="projects-section">
+        <div class="block-number">3.</div>
+        <h1 class="section__h1">Projects</h1>
+        <hr class="section__devider" />
+        <ContentSlider>
+            <template v-slot="{ currentSlideIndex }">
+                <div
+                    v-for="(item, index) in projects"
+                    :key="index"
+                    v-show="currentSlideIndex === index"
+                    class="projects-section__work slide"
+                >
+                    <div
+                        class="projects-section__image"
+                        :style="{
+                            background: `url(${item.image.url})`,
+                            'background-position': 'center',
+                        }"
+                    >
+                        <div class="projects-section__image-border"></div>
+                    </div>
+
+                    <div class="projects-section__info">
+                        <div class="projects-section__number">
+                            {{ item.order }}.
+                        </div>
+                        <h4 class="projects-section__title">
+                            {{ item.title }}
+                        </h4>
+                        <p class="projects-section__description">
+                            {{ item.description }}
+                        </p>
+                        <tags
+                            class="projects-section__tags"
+                            :list="item.tags"
+                            inline
+                        />
+                        <a :href="item.url" target="blank">
+                            <button class="button projects-section__button">
+                                Website
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </template>
+
+            <template v-slot:preload>
+                <img
+                    :src="item.image.url"
+                    v-for="item in projects"
+                    :key="`preload-image-${item.id}`"
+                />
+            </template>
+        </ContentSlider>
+    </div>
+</template>
+
+<script setup>
+const props = defineProps({
+    projects: {
+        type: Array,
+        default: () => [],
+    },
+});
+</script>
+
+<style lang="scss" scoped>
+.projects-section__work {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 60px;
+}
+
+.projects-section__number {
+    font-size: 16px;
+    line-height: 22px;
+    color: $blue;
+}
+
+.projects-section__info {
+    position: relative;
+}
+
+.projects-section__title {
+    font-size: 32px;
+    line-height: 44px;
+    color: $white;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.projects-section__description {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: $blue;
+    margin-bottom: 30px;
+    max-width: 80%;
+}
+
+.projects-section__tags {
+    max-width: 80%;
+}
+
+.projects-section__button {
+    position: absolute;
+    bottom: 0;
+}
+
+.projects-section__image {
+    position: relative;
+    min-height: 350px;
+    min-width: 300px;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    transition: all 0.4s ease;
+
+    &:hover {
+        top: -3px;
+        right: -3px;
+        transition: all 0.4s ease;
+
+        .projects-section__image-border {
+            left: -23px;
+            top: 23px;
+            transition: all 0.4s ease;
+        }
+    }
+}
+
+.projects-section__image-border {
+    width: 300px;
+    height: 350px;
+    position: absolute;
+    left: -20px;
+    top: 20px;
+    border-radius: 14px;
+    background: linear-gradient(to top, $green, rgba(120, 255, 241, 0) 100%);
+    z-index: -1;
+    transition: all 0.4s ease;
+
+    &:after {
+        content: "";
+        width: 292px;
+        height: 342px;
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        border-radius: 10px;
+        background: $dark-blue;
+    }
+}
+
+@media only screen and (max-width: $medium-devices) {
+    .projects-section__work {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .projects-section__image {
+        width: 100%;
+        max-width: 300px;
+        min-width: auto;
+        margin: 0 auto;
+    }
+
+    .projects-section__image-border {
+        display: none;
+    }
+
+    .projects-section__description {
+        max-width: 100%;
+    }
+
+    .projects-section__tags {
+        max-width: 100%;
+    }
+
+    .projects-section__button {
+        position: static;
+        margin-top: 20px;
+    }
+}
+</style>
